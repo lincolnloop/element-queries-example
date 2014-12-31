@@ -15,7 +15,8 @@ body {
 
 /* GRID FOR TESTING */
 .container {
-  width: 1100px;
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -67,9 +68,6 @@ body {
 .Article {
   max-width: 800px; // The maximum size image we'll pull down
 
-  border-radius: 3px;
-  box-shadow: 0 0 6px #ccc;
-  border: 1px solid #ddd;
   background: #f9f9f9;
   font-family: 'Open Sans';
   font-size: 1em;
@@ -83,44 +81,57 @@ body {
 }
 
 .Article + .Article {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 .Article img {
   max-width: 100%;
 }
 
-.Article-header,
-.Article-abstract {
-  padding: 0 15px 15px;
+.Article-photo {
+  display: none;
+}
+
+.Article-header {
+  padding: 10px;
 }
 
 .Article-title {
-  padding: 15px 0;
-  font-size: 1.6em;
+  margin: 0 0 .3em;
   font-weight: 600;
   line-height: 1.2;
-  color: #222;
+
+  &, a {
+    text-decoration: none;
+    color: #282828;
+  }
 }
 
 .Article-meta {
-  display: flex;
-  justify-content: space-between;
   font-size: .9em;
+}
+
+.Article-byline {
+  display: none;
 }
 
 .Article-author {
   font-style: italic;
+
+  &, a {
+    text-decoration: none;
+    color: #444;
+  }
 }
 
 .Article-published {
+  font-size: .9em;
   color: #999;
 }
 
 .Article-abstract {
+  display: none;
   line-height: 1.5;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .Article-abstract p {
@@ -128,10 +139,74 @@ body {
   margin-bottom: 1em;
 }
 
-.Article[min-width="400px"] {
+.Article:first-of-type {
+  .Article-photo,
+  .Article-byline {
+    display: block;
+  }
 
+  .Article-byline {
+    margin-bottom: .35em;
+  }
 }
 
-.Article[min-width="500px"] {
+/* MEDIUM SIZE */
+
+.Article[min-width="280px"] {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+
+  .Article-photo {
+    flex: 0 0 30%;
+  }
+
+  .Article-photo {
+    display: block;
+  }
+
+  .Article-header {
+    padding: 0 0 0 15px;
+  }
+
+  .Article-title {
+    margin-bottom: .1em;
+    font-size: .9em;
+    line-height: 1.4;
+  }
+
+  .Article-published {
+    font-size: .8em;
+  }
+}
+
+/* LARGE SIZE */
+.Article[min-width~="440px"] {
   display: block;
+
+  .Article-abstract,
+  .Article-header {
+    display: block;
+    padding: 0 15px 15px;
+  }
+
+  .Article-title {
+    margin: .5em 0;
+    font-size: 1.6em;
+  }
+
+  .Article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .Article-byline {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  .Article-published {
+    font-size: .9em;
+  }
 }
