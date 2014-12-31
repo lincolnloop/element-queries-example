@@ -1,70 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 1em;
-}
-
-body {
-  padding: 2rem;
-  background: #eee;
-}
-
-/* GRID FOR TESTING */
-.container {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.Grid {
-  display: flex;
-}
-
-.Grid-Main,
-.Grid-col {
-  margin-right: 2rem;
-}
-
-.Grid-col:last-of-type {
-  margin-right: 0;
-}
-
-.Grid-Collection {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-.Grid-Main {
-  width: 70%;
-}
-
-.Grid-Side {
-  width: 30%;
-}
-
-/* MISC CLASSES */
-
-.more-cta {
-  color: salmon;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.more-cta:before {
-  display: inline;
-  pointer-events: none;
-  margin-right: .35em;
-  content: "→";
-}
-
 /* BEGIN COMPONENT STYLES */
-
 .Article {
   max-width: 800px; // The maximum size image we'll pull down
 
@@ -80,11 +14,25 @@ body {
   color: #444;
 }
 
+.Article .more-cta {
+  color: salmon;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:before {
+    display: inline;
+    pointer-events: none;
+    margin-right: .35em;
+    content: "→";
+  }
+}
+
 .Article + .Article {
   margin-top: 1em;
 }
 
 .Article img {
+  display: block;
   max-width: 100%;
 }
 
@@ -177,6 +125,10 @@ body {
 
   .Article-published {
     font-size: .8em;
+  }
+
+  &:first-of-type .Article-byline {
+    display: none;
   }
 }
 
