@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 1em;
+}
+
+body {
+  padding: 2rem;
+  background: #eee;
+}
+
+/* GRID FOR TESTING */
+.container {
+  width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.Grid {
+  display: flex;
+}
+
+.Grid-Main,
+.Grid-col {
+  margin-right: 2rem;
+}
+
+.Grid-col:last-of-type {
+  margin-right: 0;
+}
+
+.Grid-Collection {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.Grid-Main {
+  width: 70%;
+}
+
+.Grid-Side {
+  width: 30%;
+}
+
+/* MISC CLASSES */
+
+.more-cta {
+  color: salmon;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.more-cta:before {
+  display: inline;
+  pointer-events: none;
+  margin-right: .35em;
+  content: "→";
+}
+
+/* BEGIN COMPONENT STYLES */
+
+.Article {
+  max-width: 800px; // The maximum size image we'll pull down
+
+  border-radius: 3px;
+  box-shadow: 0 0 6px #ccc;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-family: 'Open Sans';
+  font-size: 1em;
+
+  -webkit-font-smoothing: antialiased;
+  hyphens: auto;
+  text-rendering: optimizeLegibility;
+  word-wrap: break-word;
+
+  color: #444;
+}
+
+.Article + .Article {
+  margin-top: 2em;
+}
+
+.Article img {
+  max-width: 100%;
+}
+
+.Article-header,
+.Article-abstract {
+  padding: 0 15px 15px;
+}
+
+.Article-title {
+  padding: 15px 0;
+  font-size: 1.6em;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #222;
+}
+
+.Article-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: .9em;
+}
+
+.Article-author {
+  font-style: italic;
+}
+
+.Article-published {
+  color: #999;
+}
+
+.Article-abstract {
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.Article-abstract p {
+  font-size: .95em;
+  margin-bottom: 1em;
+}
+
+.Article[min-width="400px"] {
+
+}
+
+.Article[min-width="500px"] {
+  display: block;
+}
