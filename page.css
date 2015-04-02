@@ -23,6 +23,7 @@ body {
 
 @media (min-width: 600px) {
   .Grid {
+    display: -webkit-box;
     display: flex;
   }
 
@@ -44,7 +45,9 @@ body {
   }
 
   .Grid-Collection {
+    display: -webkit-box;
     display: flex;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
     margin-top: 2rem;
   }
