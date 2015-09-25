@@ -24,31 +24,31 @@ body {
 }
 
 @media (min-width: 600px) {
-  .Grid {
+  .grid {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
   }
 
-  .Grid-Main,
-  .Grid-col {
+  .grid-main,
+  .grid-col {
     margin-right: 2rem;
   }
 
-  .Grid-col:last-of-type {
+  .grid-col:last-of-type {
     margin-right: 0;
   }
 
-  .Grid-Main {
+  .grid-main {
     width: 70%;
   }
 
-  .Grid-Side {
+  .grid-side {
     width: 30%;
   }
 
-  .Grid-Collection {
+  .grid-collection {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
