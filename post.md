@@ -137,7 +137,7 @@ eq.js will pass your size map to a `:before` pseudo element that results in some
 Implementation is pretty simple, but with all polyfills and experimental methods there are some gotchas:
 
 * We're dependent upon JavaScript, which could be a problem depending on your audience.
-* The JavaScript dependency also means you may have a flicker as the element queries are applied *after* CSS loads. You can get around this by hiding elements until they've fully rendered, perhaps with a nice effect.
+* The JavaScript dependency also means you may experience a flash of incorrectly styled content. You can get around this by hiding elements until they've fully rendered, perhaps with a nice effect.
 * [You can hit some circluar issues](http://www.xanthir.com/b4VG0), but like anything else you'll hit issues if you're reckless.
 
 These issues aside, I'm positive once you start developing this way you'll find it difficult to go back. Element queries, or some future native implementation of them, really are an ideal way to build a truly flexible modular design. Hopefully we'll have native support soon but until then we have excellent options via polyfills.
