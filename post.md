@@ -1,7 +1,6 @@
-
 Element queries provide styling opportunities specific to an element's dimensions. You could consider them the holy grail of responsive web design, allowing authors to determine an element's look and feel regardless on where it's placed. If given ample space you may wish to provide a richer experience or if your element finds its way into a cramped sidebar perhaps you'd only show the bare essentials. Element queries give us a way to do this without tying into an overall site structure which makes them a perfect solution for widgets, complex layouts, style guide-based designs, or anything with lots of individual components.
 
-Currently, element queries aren't part of any specification but with a little bit of JavaScript you can get started using them today. Before we go much further, this all might make more sense if we look at an example (desktop-only for the full effect!):
+Currently, element queries aren't part of any specification but with a little bit of JavaScript you can get started using them today. Before we go much further, this all might make more sense if we look at an example (desktop-only, resize for the full effect!):
 
 <div class="demo-cta-box">
   <a href="http://lincolnloop.github.io/element-queries-example/" class="btn btn-demo">View the Demo</a>
@@ -21,11 +20,11 @@ As seen in the example I've designed an Article component that works at three di
 
 For demo purposes, I've put the basic Article component HTML into different sized columns, allowing you to see each state. Resizing your browser or editing a column's width in your browser's developer tools will trigger layout changes ([which is separate CSS](https://github.com/lincolnloop/element-queries-example/blob/gh-pages/page.css)), resulting in a visual change to a few Article components.
 
-You can imagine this Article component being used throughout a news website or packaged as a syndication widget. It's a pattern found CNN.com<sup>[1]</sup>, which just so happens to be using element queries!
+You can imagine this Article component being used throughout a news website or packaged as a syndication widget. It's a pattern found CNN.com, which just so happens to be using element queries!
 
 ## How It's Built
 
-Since element queries aren't part of any specification (yet) we'll need some help getting the functionality we want. I recommend [eq.js by Sam Richards](https://github.com/Snugug/eq.js), a lightweight polyfill<sup>[2]</sup>, though most of the other solutions work similarly. With eq.js you'll only need to include one file:
+Since element queries aren't part of any specification (yet) we'll need some help getting the functionality we want. I recommend [eq.js by Sam Richards](https://github.com/Snugug/eq.js), a lightweight polyfill, though most of the other solutions work similarly. With eq.js you'll only need to include one file:
 
 ```
 @syntax: HTML
@@ -79,7 +78,7 @@ Like other element query options, eq.js uses attributes to connect style changes
   */
 }
 
-[data-eq-state$="article--medium"] { {
+[data-eq-state$="article--medium"] {
   /*
     Styles specific to our medium state.
     Should override smallest state.
@@ -87,7 +86,7 @@ Like other element query options, eq.js uses attributes to connect style changes
 }
 
 
-[data-eq-state$="article--large"] { {
+[data-eq-state$="article--large"] {
   /*
     Our largest size.
     Should override small and medium.
@@ -107,7 +106,7 @@ eq.js will parse our DOM and apply a `data-eq-state` attribute with the appropri
   <!-- Rest of .article -->
 ```
 
-It's worth noting that if you're willing to take a slight (almost negligible) performance hit when rendering you can move configuration to a Sass file. eq.js provides some tools for this. Here's how they might look applied to our example:
+It's worth noting that if you're willing to take a slight (almost negligible) performance hit when rendering you can move configuration to a Sass file. eq.js provides some tools for this. Here's how they might look when applied to our example:
 
 ```
 @syntax: SCSS
@@ -140,4 +139,4 @@ Implementation is pretty simple, but with all polyfills and experimental methods
 * The JavaScript dependency also means you may experience a flash of incorrectly styled content. You can get around this by hiding elements until they've fully rendered, perhaps with a nice effect.
 * [You can hit some circluar issues](http://www.xanthir.com/b4VG0), but like anything else you'll hit issues if you're reckless.
 
-These issues aside, I'm positive once you start developing this way you'll find it difficult to go back. Element queries, or some future native implementation of them, really are an ideal way to build a truly flexible modular design. Hopefully we'll have native support soon but until then we have excellent options via polyfills.
+These issues aside, I'm positive if you start developing this way you'll find it difficult to go back. Element queries, or some future native implementation of them, really are an ideal way to build a truly flexible modular design. Hopefully we'll have native support soon but until then we have excellent options via polyfills.

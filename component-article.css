@@ -98,6 +98,7 @@
 }
 
 /* MEDIUM SIZE */
+/* This would all be cleaner with Sass/LESS */
 [data-eq-state$="article--medium"] {
   display: flex;
   padding: 10px;
@@ -131,6 +132,7 @@
 }
 
 /* LARGE SIZE */
+/* This would all be cleaner with Sass/LESS */
 [data-eq-state$="article--large"] {
   display: block;
 }
