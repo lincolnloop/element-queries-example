@@ -98,65 +98,65 @@
 }
 
 /* MEDIUM SIZE */
-[data-eq-state~="article--medium"] {
+[data-eq-state$="article--medium"] {
   display: flex;
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
 
-[data-eq-state~="article--medium"] .article-photo {
+[data-eq-state$="article--medium"] .article-photo {
   flex: 0 0 30%;
 }
 
-[data-eq-state~="article--medium"] .article-photo {
+[data-eq-state$="article--medium"] .article-photo {
   display: block;
 }
 
-[data-eq-state~="article--medium"] .article-header {
+[data-eq-state$="article--medium"] .article-header {
   padding: 0 0 0 15px;
 }
 
-[data-eq-state~="article--medium"] .article-title {
+[data-eq-state$="article--medium"] .article-title {
   margin-bottom: .1em;
   font-size: .9em;
   line-height: 1.4;
 }
 
-[data-eq-state~="article--medium"] .article-published {
+[data-eq-state$="article--medium"] .article-published {
   font-size: .8em;
 }
 
-[data-eq-state~="article--medium"]:first-of-type .article-byline {
+[data-eq-state$="article--medium"]:first-of-type .article-byline {
   display: none;
 }
 
 /* LARGE SIZE */
-[data-eq-state~="article--large"] {
+[data-eq-state$="article--large"] {
   display: block;
 }
 
-[data-eq-state~="article--large"] .article-abstract,
-[data-eq-state~="article--large"] .article-header {
+[data-eq-state$="article--large"] .article-abstract,
+[data-eq-state$="article--large"] .article-header {
   display: block;
   padding: 0 15px 15px;
 }
 
-[data-eq-state~="article--large"] .article-title {
+[data-eq-state$="article--large"] .article-title {
   margin: .5em 0;
   font-size: 1.6em;
 }
 
-[data-eq-state~="article--large"] .article-meta {
+[data-eq-state$="article--large"] .article-meta {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 
-[data-eq-state~="article--large"] .article-byline {
+[data-eq-state$="article--large"] .article-byline {
   display: inline-block;
   margin-bottom: 0;
 }
 
-[data-eq-state~="article--large"] .article-published {
+[data-eq-state$="article--large"] .article-published {
   font-size: .9em;
 }

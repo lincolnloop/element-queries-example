@@ -25,21 +25,22 @@ You can imagine this Article component being used throughout a news website or p
 
 ## How It's Built
 
-Since element queries aren't part of any specification (yet) we'll need some help getting the functionality we want. I recommend [Marc J. Schmidt's](https://twitter.com/MarcJSchmidt) [css-element-queries](https://github.com/marcj/css-element-queries), a lightweight polyfill<sup>[2]</sup>. You'll need to include two files (or you can concat and minimize them) at the bottom of your HTML:
+Since element queries aren't part of any specification (yet) we'll need some help getting the functionality we want. I recommend [eq.js by Sam Richards](https://github.com/Snugug/eq.js), a lightweight polyfill<sup>[2]</sup>, though most of the other solutions work similarly. With eq.js you'll only need to include one file:
 
 ```
 @syntax: HTML
-<script src="ResizeSensor.js"></script>
-<script src="ElementQueries.js"></script>
+<script src="eq.min.js"> </script>
 ```
 
-These two files add the hooks we need to detect changes and then apply the attributes we'll need to handle our states. Like other element query options, css-element-queries uses attributes to connect style changes to components. A basic structure for our example looks like this:
+Like other element query options, eq.js uses attributes to connect style changes to components. A basic structure for our example looks like this:
 
 ### HTML
 
 ```
 @syntax: HTML
-<article class="article">
+<article
+  class="article"
+  data-eq-pts="article--medium: 280, article--large: 440">
   <a href="#" class="article-photo">
     <img
       src="picture.jpg"
@@ -67,10 +68,10 @@ These two files add the hooks we need to detect changes and then apply the attri
 </article>
 ```
 
-### Scss/CSS
+### CSS
 
 ```
-@syntax: SCSS
+@syntax: CSS
 .article {
   /*
     All our basic styles.
@@ -78,7 +79,7 @@ These two files add the hooks we need to detect changes and then apply the attri
   */
 }
 
-.article[min-width="280px"] {
+[data-eq-state$="article--medium"] { {
   /*
     Styles specific to our medium state.
     Should override smallest state.
@@ -86,7 +87,7 @@ These two files add the hooks we need to detect changes and then apply the attri
 }
 
 
-.article[min-width~="440px"] {
+[data-eq-state$="article--large"] { {
   /*
     Our largest size.
     Should override small and medium.
@@ -94,19 +95,42 @@ These two files add the hooks we need to detect changes and then apply the attri
 }
 ```
 
-Similar to mobile-first design patterns, we are specifying our smallest size and then overriding styles as we have more space, except we're using classes instead of media queries.
+Similar to mobile-first design patterns, we are specifying our smallest size and then overriding styles as we have more space, except we're using attribute selectors instead of media queries.
 
-The Article component has different sizes for the title and photo for example (the CSS is lengthy to show here, be sure to  [view the Scss](https://github.com/lincolnloop/element-queries-example/blob/gh-pages/component-article.scss)). In some cases, like the smaller sizes, we have no room for the abstract so we hide it altogether.
+The Article component has different sizes for the title and photo for example (the CSS is lengthy to show here, be sure to  [view the CSS](https://github.com/lincolnloop/element-queries-example/blob/gh-pages/component-article.css)). In some cases, like the smaller sizes, we have no room for the abstract so we hide it altogether.
 
-css-element-queries will parse our CSS and apply a `min-width` attribute with the appropriate values onload. Our largest state will have a `min-width` value of `280px 440px`, while the middle state will only have `240px`:
+eq.js will parse our DOM and apply a `data-eq-state` attribute with the appropriate values when the `DOMContentLoaded` event triggers. Our largest state will have a `data-eq-state` value of `article--medium article-large`, while the middle state will only have `article--medium`. Here's how it looks when it runs:
 
 ```
 @syntax: HTML
-<article class="article" min-width="280px 440px" style="position: relative;">
+<article class="article" data-eq-pts="article--medium: 280, article--large: 440" data-eq-state="article--medium article--large">
   <!-- Rest of .article -->
 ```
 
-The killer feature here is that our HTML does not change and modifications to the Article component happen without knowledge of the site's structure. Have you ever had an editor stick a component in the wrong bucket? Well, now it won't matter!
+It's worth noting that if you're willing to take a slight (almost negligible) performance hit when rendering you can move configuration to a Sass file. eq.js provides some tools for this. Here's how they might look applied to our example:
+
+```
+@syntax: SCSS
+.article {
+  @include eq-pts((
+    medium: 280,
+    large: 440
+  ));
+}
+
+/* Add this at the end of your stylesheet */
+@include eq-selectors;
+```
+
+eq.js will pass your size map to a `:before` pseudo element that results in something like this, which it can read and use to apply the appropriate attributes:
+
+```
+@syntax: CSS
+.article:before {
+  display: none;
+  content: "medium: 280, large: 440";
+}
+```
 
 ## Closing Thoughts
 
@@ -117,6 +141,3 @@ Implementation is pretty simple, but with all polyfills and experimental methods
 * [You can hit some circluar issues](http://www.xanthir.com/b4VG0), but like anything else you'll hit issues if you're reckless.
 
 These issues aside, I'm positive once you start developing this way you'll find it difficult to go back. Element queries, or some future native implementation of them, really are an ideal way to build a truly flexible modular design. Hopefully we'll have native support soon but until then we have excellent options via polyfills.
-
-* [1] As of January 2015
-* [2] You can also try [eq.js](https://github.com/Snugug/eq.js), which is excellent and maintained by the amazing [Sam Richards](https://twitter.com/snugug). However, it does not support `min-height` or `max-height` as of January 2015.
